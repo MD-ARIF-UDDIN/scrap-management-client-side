@@ -12,9 +12,9 @@ const Tools = () => {
     <div className="my-28">
       <h2 className="text-4xl font-bold text-center">Our Tools</h2>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5">
-        {tools.map((tools) => (
-          <Tool key={tools._id} tools={tools}></Tool>
-        ))}
+        {tools
+          .slice(0, 6).map((tools) => <Tool key={tools._id} tools={tools}></Tool>)
+          .reverse()}
       </div>
     </div>
   );

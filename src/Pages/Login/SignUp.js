@@ -1,71 +1,82 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import {
-  useSignInWithEmailAndPassword,
+  useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { sendPasswordResetEmail } from "firebase/auth";
+import { Link } from "react-router-dom";
 
-const Login = () => {
-  // const emailRef = useRef("");
+const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  let signInError;
-  const navigate = useNavigate();
-  const location = useLocation();
-  let from = location.state?.from?.pathname || "/";
-  useEffect(() => {
-    if (gUser || user) {
-      console.log(gUser || user);
-      navigate(from, { replace: true });
-    }
-  }, [user, gUser, from, navigate]);
-  if (gLoading || loading) {
+  let signUpError;
+  if (gLoading || loading || updating) {
     return <Loading></Loading>;
   }
-
-  if (error || gError) {
-    signInError = (
+  if (gUser || user) {
+    console.log(gUser || user);
+  }
+  if (error || gError || updateError) {
+    signUpError = (
       <p className="text-red-500">
-        <small>{error?.message || gError?.message}</small>
+        <small>
+          {error?.message || gError?.message || updateError?.message}
+        </small>
       </p>
     );
   }
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    signInWithEmailAndPassword(data.email, data.password);
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    console.log("updated name");
   };
-  // const resetPassword = async () => {
-  //   const email = emailRef.current.value;
-  //   if (email) {
-  //     await sendPasswordResetEmail(email);
-  //     alert("Sent email");
-  //   } else {
-  //     alert("please enter your email");
-  //   }
-  // };
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="text-center text-4xl font-bold">Login</h2>
+          <h2 className="text-center text-4xl font-bold">Sign Up</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="your name"
+                className="input input-bordered w-full max-w-xs"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "name is required",
+                  },
+                })}
+              />
+              <label className="label">
+                {errors.name?.type === "required" && (
+                  <span className="label-text-alt text-red-600">
+                    {errors.name.message}
+                  </span>
+                )}
+              </label>
+            </div>
+
             <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
                 type="email"
-                // ref={emailRef}
                 placeholder="your email"
                 className="input input-bordered w-full max-w-xs"
                 {...register("email", {
@@ -126,28 +137,19 @@ const Login = () => {
               </label>
             </div>
 
-            {signInError}
+            {signUpError}
             <input
               className="btn w-full max-w-xs"
-              value="login"
+              value="SIGNUP"
               type="submit"
             />
           </form>
-          {/* <p>
-            New to scrap tools?{" "}
-            <Link className="text-primary" to="/signup">
-              please register
+          <p>
+            Already have an account?{" "}
+            <Link className="text-primary" to="/login">
+              please login
             </Link>
           </p>
-          <p>
-        Forgot your password?
-        <button
-          className="btn btn-link text-danger pe-auto"
-          onClick={resetPassword}
-        >
-          Reset password
-        </button>
-      </p> */}
           <div className="divider">OR</div>
           <button
             onClick={() => signInWithGoogle()}
@@ -161,4 +163,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

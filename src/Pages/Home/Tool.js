@@ -2,10 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Tool = ({tools}) => {
-    const {id,name,image,price,description,quantity}=tools;
+    const {_id,name,image,price,description,quantity}=tools;
     const navigate = useNavigate();
     const handlePurchase = (id) => {
-        navigate(`/purchase/${id}`);
+        navigate(`/purchase/${_id}`);
       };
   return (
   
@@ -13,7 +13,7 @@ const Tool = ({tools}) => {
         <figure className="px-10 pt-10">
           <img
             src={image}
-            alt="Shoes"
+            alt="tool"
             className="rounded-xl"
           />
         </figure>
@@ -23,7 +23,7 @@ const Tool = ({tools}) => {
           <h1>Price:{price}</h1>
           <p>{description}</p>
           <div className="card-actions">
-            <button  onClick={() => handlePurchase(id)} className="btn btn-primary">Buy Now</button>
+            <button  onClick={() => handlePurchase(_id)} className="btn btn-primary">Buy Now</button>
           </div>
         </div>
       </div>

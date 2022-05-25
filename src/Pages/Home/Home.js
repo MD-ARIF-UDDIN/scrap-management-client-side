@@ -1,6 +1,7 @@
 import React from 'react';
-import Footer from '../Shared/Footer';
 import Banner from './Banner';
+import Contact from './Contact/Contact';
+import Stats from './Stats';
 import Tools from './Tools';
 
 const Home = () => {
@@ -8,7 +9,8 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <Tools></Tools>
-            <Footer></Footer>
+            <Stats></Stats>
+            <Contact></Contact>
         </div>
     );
 };
