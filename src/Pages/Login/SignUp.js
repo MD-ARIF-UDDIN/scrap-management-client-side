@@ -7,13 +7,23 @@ import {
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
+import useToken from "../../hooks/useToken";
+import { sendEmailVerification } from "firebase/auth";
 
 const SignUp = () => {
+  const navigate=useNavigate();
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [token] =useToken(user || gUser);
+  const verifyEmail=()=>{
+    sendEmailVerification(auth.currentUser)
+    .then(()=>{
+        console.log('sent')
+    })
+}
   const {
     register,
     formState: { errors },
@@ -23,8 +33,8 @@ const SignUp = () => {
   if (gLoading || loading || updating) {
     return <Loading></Loading>;
   }
-  if (gUser || user) {
-    console.log(gUser || user);
+  if (token) {
+    navigate('/home');
   }
   if (error || gError || updateError) {
     signUpError = (
@@ -38,6 +48,7 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     console.log(data);
     await createUserWithEmailAndPassword(data.email, data.password);
+    verifyEmail();
     await updateProfile({ displayName: data.name });
     console.log("updated name");
   };

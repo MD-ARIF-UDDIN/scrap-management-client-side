@@ -1,32 +1,53 @@
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
   const [orders, setOrders] = useState([]);
-//   const handleItemDelete = (id) => {
-//     const confirm = window.confirm("Do you delete this item?");
-
-//     if (confirm) {
-//       fetch(`https://fierce-stream-21058.herokuapp.com/fruit/${id}`, {
-//         method: "DELETE",
-//       })
-//         .then((res) => res.json())
-//         .then((data) => {
-//           const remainingItem = orders.filter((item) => item._id !== id);
-//           setOrders(remainingItem);
-//         });
-//     }
-//   };
+  const navigate=useNavigate();
   useEffect(() => {
     const email = user?.email;
-    fetch(`http://localhost:5000/purchase?customer=${email}`)
-      .then((res) => res.json())
-      .then((data) => setOrders(data));
+    fetch(`http://localhost:5000/purchase?customer=${email}`
+    ,{
+      method:'GET',
+      headers:{
+        'authorization':`Bearer ${localStorage.getItem('accessToken')}`
+      }
+    }
+    )
+      .then((res) => {
+       if(res.status===401 || res.status===403){
+         signOut(auth);
+         localStorage.removeItem('accessToken');
+        navigate('/');
+       }
+        return res.json()
+      })
+      .then((data) =>{ 
+
+        setOrders(data)
+      });
   }, [user]);
-  
+
+  const handleItemDelete = (id) => {
+    console.log(id);
+    const confirm = window.confirm("Do you delete this item?");
+    if (confirm) {
+      fetch(`http://localhost:5000/purchase/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+          const remainingOrder = orders.filter((order) => order._id !== id);
+          setOrders(remainingOrder);
+        });
+    }
+  };
+
   return (
     <div>
       <h2>My orders: {orders.length}</h2>
@@ -68,7 +89,14 @@ const MyOrders = () => {
                     </div>
                   )}
                 </td>
-                {/* <td><button  onClick={() => handleItemDelete(orders._id)} className="btn btn-xs btn-warning">delete</button></td> */}
+                <td>
+                  <button
+                    onClick={() => handleItemDelete(a._id)}
+                    className="btn btn-xs btn-warning"
+                  >
+                    delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

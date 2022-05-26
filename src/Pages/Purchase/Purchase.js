@@ -47,6 +47,7 @@ const Purchase = () => {
       customer: user.email,
       customerName: user.displayName,
       phone: event.target.phone.value,
+      address:event.target.address.value,
     };
     console.log(purchase);
     let newTools = {
@@ -138,12 +139,23 @@ const Purchase = () => {
               required
             />
           </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Your Address</span>
+            </label>
+            <input
+              type="text"
+              name="address"
+              placeholder="your Address"
+              className="input input-bordered"
+              required
+            />
+          </div>
           <div>
             <label className="label">
               <span className="label-text">Order Quantity</span>
             </label>
             <input
-            
               type="number"
               name="minquantity"
               placeholder="Enter how many to purchase"

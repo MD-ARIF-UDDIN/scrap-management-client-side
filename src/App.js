@@ -16,6 +16,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import AddReview from "./Pages/Dashboard/AddReview";
 import MyOrders from "./Pages/Dashboard/MyOrders";
+import MyProfile from "./Pages/Dashboard/MyProfile";
+import Users from "./Pages/Dashboard/Users";
+import RequireAdmin from "./Pages/Login/RequireAdmin";
 
 function App() {
   return (
@@ -23,6 +26,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="products" element={<Products></Products>} />
         <Route
           path="/purchase/:id"
@@ -42,6 +46,8 @@ function App() {
         >
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path="addreview" element={<AddReview></AddReview>}></Route>
+          <Route path="users" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
+          <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
         </Route>
         <Route path="blogs" element={<Blogs />} />
         <Route path="myportfolio" element={<MyPortfolio></MyPortfolio>} />

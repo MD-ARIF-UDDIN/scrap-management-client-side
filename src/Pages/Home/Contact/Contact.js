@@ -6,7 +6,7 @@ const Contact = () => {
       <h1 className="text-center text-4xl font-bold">Contact With Us</h1>
       <div className="w-full mt-6 md:w-96 md:max-w-full mx-auto">
         <div className="p-6 mt-4 border border-gray-300 sm:rounded-md">
-          <form method="POST" action="https://herotofu.com/start">
+          <form method="POST">
             <label className="block mb-6">
               <span className="text-gray-700">Your name</span>
               <input

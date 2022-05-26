@@ -8,12 +8,14 @@ import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   // const emailRef = useRef("");
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+    const [token]=useToken(user || gUser);
   const {
     register,
     formState: { errors },
@@ -24,11 +26,11 @@ const Login = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
   useEffect(() => {
-    if (gUser || user) {
+    if (token) {
       console.log(gUser || user);
       navigate(from, { replace: true });
     }
-  }, [user, gUser, from, navigate]);
+  }, [token, from, navigate]);
   if (gLoading || loading) {
     return <Loading></Loading>;
   }
@@ -133,7 +135,7 @@ const Login = () => {
               type="submit"
             />
           </form>
-          {/* <p>
+          <p>
             New to scrap tools?{" "}
             <Link className="text-primary" to="/signup">
               please register
@@ -143,11 +145,11 @@ const Login = () => {
         Forgot your password?
         <button
           className="btn btn-link text-danger pe-auto"
-          onClick={resetPassword}
+         
         >
           Reset password
         </button>
-      </p> */}
+      </p>
           <div className="divider">OR</div>
           <button
             onClick={() => signInWithGoogle()}
