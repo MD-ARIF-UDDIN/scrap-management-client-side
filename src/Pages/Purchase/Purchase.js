@@ -12,7 +12,7 @@ const Purchase = () => {
   // const [tools, setTools] = useState(id);
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/tool/${id}`)
+  //   fetch(`https://tranquil-wave-41515.herokuapp.com/tool/${id}`)
   //     .then((res) => res.json())
   //     .then((data) => setTools(data));
   // }, [id]);
@@ -21,7 +21,9 @@ const Purchase = () => {
     isLoading,
     refetch,
   } = useQuery(["tool", id], () =>
-    fetch(`http://localhost:5000/tool/${id}`).then((res) => res.json())
+    fetch(`https://tranquil-wave-41515.herokuapp.com/tool/${id}`).then((res) =>
+      res.json()
+    )
   );
   if (isLoading) {
     return <Loading></Loading>;
@@ -39,15 +41,17 @@ const Purchase = () => {
     //orderErr();
     const purchaseQuantity = event.target.minquantity.value;
     let remaining = parseInt(quantity) - purchaseQuantity;
+    const totalMoney = purchaseQuantity * price;
     const purchase = {
       toolsId: _id,
       tools: name,
       purchaseQuantity,
       price,
       customer: user.email,
+      totalMoney,
       customerName: user.displayName,
       phone: event.target.phone.value,
-      address:event.target.address.value,
+      address: event.target.address.value,
     };
     console.log(purchase);
     let newTools = {
@@ -59,7 +63,7 @@ const Purchase = () => {
       minimum,
     };
 
-    fetch(`http://localhost:5000/tool/${id}`, {
+    fetch(`https://tranquil-wave-41515.herokuapp.com/tool/${id}`, {
       method: "PUT",
       body: JSON.stringify(newTools),
       headers: {
@@ -69,7 +73,7 @@ const Purchase = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
 
-    fetch("http://localhost:5000/purchase", {
+    fetch("https://tranquil-wave-41515.herokuapp.com/purchase", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -164,7 +168,7 @@ const Purchase = () => {
               className="input searchField input-bordered input-primary "
             />
           </div>
-          
+
           <input
             type="submit"
             value="Submit"

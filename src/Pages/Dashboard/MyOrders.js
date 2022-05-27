@@ -2,33 +2,34 @@ import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
   const [orders, setOrders] = useState([]);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     const email = user?.email;
-    fetch(`http://localhost:5000/purchase?customer=${email}`
-    ,{
-      method:'GET',
-      headers:{
-        'authorization':`Bearer ${localStorage.getItem('accessToken')}`
+    fetch(
+      `https://tranquil-wave-41515.herokuapp.com/purchase?customer=${email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
       }
-    }
     )
       .then((res) => {
-       if(res.status===401 || res.status===403){
-         signOut(auth);
-         localStorage.removeItem('accessToken');
-        navigate('/');
-       }
-        return res.json()
+        if (res.status === 401 || res.status === 403) {
+          signOut(auth);
+          localStorage.removeItem("accessToken");
+          navigate("/");
+        }
+        return res.json();
       })
-      .then((data) =>{ 
-
-        setOrders(data)
+      .then((data) => {
+        setOrders(data);
       });
   }, [user]);
 
@@ -36,13 +37,14 @@ const MyOrders = () => {
     console.log(id);
     const confirm = window.confirm("Do you delete this item?");
     if (confirm) {
-      fetch(`http://localhost:5000/purchase/${id}`, {
+      fetch(`https://tranquil-wave-41515.herokuapp.com/purchase/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
+          console.log(data);
           const remainingOrder = orders.filter((order) => order._id !== id);
+          toast.success('order deleted successfully');
           setOrders(remainingOrder);
         });
     }
@@ -59,6 +61,7 @@ const MyOrders = () => {
               <th>Name</th>
               <th>Tool</th>
               <th>Orderd Quantity</th>
+              <th>Order Money</th>
               <th>Payment</th>
               <th>Delete</th>
             </tr>
@@ -69,7 +72,9 @@ const MyOrders = () => {
                 <th>{index + 1}</th>
                 <td>{a.customerName}</td>
                 <td>{a.tools}</td>
+                
                 <td>{a.purchaseQuantity}</td>
+                <td>{a.totalMoney}</td>
 
                 <td>
                   {a.price && !a.paid && (
@@ -83,7 +88,6 @@ const MyOrders = () => {
                         <span className="text-success">Paid</span>
                       </p>
                       <p>
-                        Transaction id:{" "}
                         <span className="text-success">{a.transactionId}</span>
                       </p>
                     </div>
