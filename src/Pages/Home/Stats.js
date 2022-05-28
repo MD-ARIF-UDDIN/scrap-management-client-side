@@ -1,79 +1,69 @@
+import {
+  faMessage,
+  faPeopleCarry,
+  faSackDollar,
+  faToolbox,
+  faTruck,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import CountUp from "react-countup";
 
 const Stats = () => {
   return (
-    <div >
-      <div className="text-center">
-        <h1 className="font-bold text-4xl">Business Summary</h1>
-      </div>
-
-      <div className="flex justify-center mt-12">
-        <div className="stats shadow">
-          <div className="stat">
-            <div className="stat-figure text-secondary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block w-8 h-8 stroke-current"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </div>
-            <div className="stat-title">Last year delivery</div>
-            <div className="stat-value">31K</div>
-            <div className="stat-desc">Jan 1st - Feb 1st</div>
+    <>
+      <h2 className="text-3xl font-bold text-primary text-center">
+        Business Summary
+      </h2>
+      <div className="px-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div className="m-4  card card-compact border-none">
+          <div className="card-body gap-0 text-center">
+            <p className="text-4xl text-primary">
+              <FontAwesomeIcon icon={faPeopleCarry} />
+            </p>
+            <h2 className="card-title justify-center">Total Customers</h2>
+            <p className="text-2xl font-bold">
+              <CountUp end={1000} />+
+            </p>
           </div>
-
-          <div className="stat">
-            <div className="stat-figure text-secondary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block w-8 h-8 stroke-current"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                ></path>
-              </svg>
-            </div>
-            <div className="stat-title">New Customer</div>
-            <div className="stat-value">4,200</div>
-            <div className="stat-desc">↗︎ 400 (22%)</div>
+        </div>
+        <div className="m-4 card card-compact border-none">
+          <div className="card-body gap-0 text-center">
+            <p className="text-4xl text-primary-focus">
+              <FontAwesomeIcon icon={faTruck} />
+            </p>
+            <h2 className="card-title justify-center">Delivery Record</h2>
+            <p className="text-2xl font-bold">
+              <CountUp end={1200} />
+              +
+            </p>
           </div>
-
-          <div className="stat">
-            <div className="stat-figure text-secondary">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block w-8 h-8 stroke-current"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-                ></path>
-              </svg>
-            </div>
-            <div className="stat-title">Total customer</div>
-            <div className="stat-value">1,2000</div>
-            <div className="stat-desc">↘︎ 90 (14%)</div>
+        </div>
+        <div className="m-4 card card-compact border-none">
+          <div className="card-body gap-0 text-center">
+            <p className="text-4xl text-primary">
+              <FontAwesomeIcon icon={faMessage} />
+            </p>
+            <h2 className="card-title justify-center">Reviews</h2>
+            <p className="text-2xl font-bold">
+              <CountUp end={90} />
+              K+
+            </p>
+          </div>
+        </div>
+        <div className="m-4 card card-compact border-none">
+          <div className="card-body text-center">
+            <p className="text-4xl text-primary">
+              <FontAwesomeIcon icon={faToolbox} />
+            </p>
+            <h2 className="card-title justify-center">Tools</h2>
+            <p className="text-2xl font-bold">
+              <CountUp end={30} />+
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

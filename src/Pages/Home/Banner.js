@@ -1,47 +1,24 @@
 import React from "react";
-import banner from "../../Pages/Home/Banner.css"
+import banner from "../../Pages/Home/Banner.css";
 const Banner = () => {
   return (
-    <div className="carousel w-full">
-      <div id="slide1" className="carousel-item relative w-full">
-        <img src="https://i.ibb.co/rFJGXWY/tools-banner4.webp" className="w-full" />{" "}
-        /
-        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-          <a href="#slide4" className="btn btn-circle">
-            ❮
-          </a>
-          <a href="#slide2" className="btn btn-circle">
-            ❯
-          </a>
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <img src="https://i.ibb.co/741p9nv/R.png" />
+        <div>
+          <h1 className="text-5xl font-bold">
+            <span className="text-primary">Scrap</span> tools ltd
+          </h1>
+          <p className="py-6">
+            Scrap tools ltd, based in bangladesh, MI, serves the tools sell,
+            manufacture. They offer standard and custom parts and tools, with
+            custom manufacturing services including machining, additive
+            manufacturing, molding, cutting, extrusions, stamping, bending, and
+            welding.
+          </p>
+          <button className="btn btn-primary">Order now</button>
         </div>
       </div>
-      <div id="slide2" className="carousel-item relative w-full">
-        <img src="https://i.ibb.co/nfGKWtH/1.webp" className="w-full" /> /
-        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-          <a href="#slide1" className="btn btn-circle">
-            ❮
-          </a>
-          <a href="#slide3" className="btn btn-circle">
-            ❯
-          </a>
-        </div>
-      </div>
-      <div id="slide3" className="carousel-item relative w-full">
-        <img
-          src="https://i.ibb.co/cD1zz0Y/flat-lay-composition-plumber-s-tools-space-text-background-banner-design-flat-lay-composition-plumbe.jpg"
-          className="w-full"
-        />{" "}
-        /
-        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-          <a href="#slide2" className="btn btn-circle">
-            ❮
-          </a>
-          <a href="#slide4" className="btn btn-circle">
-            ❯
-          </a>
-        </div>
-      </div>
-     
     </div>
   );
 };

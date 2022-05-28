@@ -8,14 +8,10 @@ import Loading from "../Shared/Loading";
 
 const Purchase = () => {
   const { id } = useParams();
-  const [user, loading, error] = useAuthState(auth);
-  // const [tools, setTools] = useState(id);
+  const [user, loading] = useAuthState(auth);
+  const [btnDisable, setBtnDisable] = useState(false);
 
-  // useEffect(() => {
-  //   fetch(`https://tranquil-wave-41515.herokuapp.com/tool/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setTools(data));
-  // }, [id]);
+
   const {
     data: tools,
     isLoading,
@@ -29,16 +25,21 @@ const Purchase = () => {
     return <Loading></Loading>;
   }
 
+  const handleInput = (e) => {
+    let orderQuantity = parseInt(e.target.value);
+    let toolsQuantity = parseInt(quantity);
+    if (orderQuantity > toolsQuantity || orderQuantity < minimum) {
+      setBtnDisable(true);
+    } else {
+      setBtnDisable(false);
+    }
+  };
+
   const { _id, name, image, price, description, quantity, minimum } = tools;
-  // const orderErr = () => {
-  //   const purQuantity = document.querySelector(".searchField").value;
-  //   if (quantity <= purQuantity) {
-  //     return <h1>Order cant be higher than quantity</h1>;
-  //   }
-  // };
+
   const handlePurchase = (event) => {
     event.preventDefault();
-    //orderErr();
+
     const purchaseQuantity = event.target.minquantity.value;
     let remaining = parseInt(quantity) - purchaseQuantity;
     const totalMoney = purchaseQuantity * price;
@@ -88,7 +89,7 @@ const Purchase = () => {
       });
   };
   return (
-    <div>
+    <div className="mb-6">
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
           <img
@@ -160,6 +161,7 @@ const Purchase = () => {
               <span className="label-text">Order Quantity</span>
             </label>
             <input
+              onChange={handleInput}
               type="number"
               name="minquantity"
               placeholder="Enter how many to purchase"
@@ -170,11 +172,16 @@ const Purchase = () => {
           </div>
 
           <input
+            disabled={btnDisable}
             type="submit"
-            value="Submit"
+            value="order"
             className="btn w-full max-w-xs mt-6"
           />
+           {btnDisable && (
+          <p className="text-red-500 mt-2   ">Please enter valid quantity</p>
+        )}
         </form>
+       
       </div>
     </div>
   );

@@ -1,11 +1,149 @@
-import React from 'react';
+import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const MyProfile = () => {
-    return (
-        <div>
-            <h1>this is my profile</h1>
+  const [user, loading, error] = useAuthState(auth);
+
+  const { _id, education, phone, location, linkedin } = user;
+
+  const handleUpdate = (event) => {
+    event.preventDefault();
+
+    const updatedInfo = {
+      phone: event.target.phone.value,
+      address: event.target.location.value,
+      education: event.target.education.value,
+      linkedin: event.target.linkedin.value,
+    };
+  };
+
+  return (
+    <div className="mb-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-4 gap-5">
+      <div className="bg-white w-3/4 shadow overflow-hidden sm:rounded-lg">
+        <div className="px-4 py-5 sm:px-6">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            Your Profile Info
+          </h3>
         </div>
-    );
+        {user.photoURL && (
+          <div className="avatar px-2">
+            <div className=" w-full lg:w-72 rounded-full ring ring-primary ring-offset-base-200 ring-offset-2">
+              <img src={user.photoURL} alt="" />
+            </div>
+          </div>
+        )}
+
+        <div className="border-t border-gray-200">
+          <dl>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Full name</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {user.displayName}
+              </dd>
+            </div>
+
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Email address
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {user.email}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div className="w-3/4">
+        <h1 className="text-2xl font-bold text-primary">Update Your Profile</h1>
+        <form onSubmit={handleUpdate}>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Type here"
+              disabled
+              value={user?.email || ""}
+              className="input input-bordered "
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Your name</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Type here"
+              disabled
+              value={user?.displayName || ""}
+              className="input input-bordered"
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Your Phone Number</span>
+            </label>
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone number"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Your location</span>
+            </label>
+            <input
+              type="text"
+              name="location"
+              placeholder="your location"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">education</span>
+            </label>
+            <input
+              type="text"
+              name="education"
+              placeholder="your education"
+              className="input input-bordered"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">linkedin</span>
+            </label>
+            <input
+              type="text"
+              name="linkedin<"
+              placeholder="your linkedin<"
+              className="input input-bordered"
+              required
+            />
+          </div>
+
+          <input
+            type="submit"
+            value="order"
+            className="btn w-full max-w-xs mt-6"
+          />
+        </form>
+        
+      </div>
+    </div>
+  );
 };
 
 export default MyProfile;

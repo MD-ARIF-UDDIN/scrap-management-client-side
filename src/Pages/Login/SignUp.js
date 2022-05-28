@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -7,12 +7,13 @@ import {
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
-import { Link,  useNavigate } from "react-router-dom";
+import { Link,  useLocation,  useNavigate } from "react-router-dom";
 import useToken from "../../hooks/useToken";
 import { sendEmailVerification } from "firebase/auth";
 
 const SignUp = () => {
   const navigate=useNavigate();
+  const location=useLocation();
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -24,6 +25,18 @@ const SignUp = () => {
         console.log('sent')
     })
 }
+
+
+let from = location.state?.from?.pathname || "/home";
+useEffect(() => {
+    if (token && from === '/signup') {
+        navigate('/');
+    }
+    else if (token) {
+        navigate(from, { replace: true });
+    }
+}, [token, from, navigate]);
+
   const {
     register,
     formState: { errors },
@@ -33,9 +46,8 @@ const SignUp = () => {
   if (gLoading || loading || updating) {
     return <Loading></Loading>;
   }
-  if (token) {
-    navigate('/home');
-  }
+
+
   if (error || gError || updateError) {
     signUpError = (
       <p className="text-red-500">

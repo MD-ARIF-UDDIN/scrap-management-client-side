@@ -24,13 +24,15 @@ const Login = () => {
   let signInError;
   const navigate = useNavigate();
   const location = useLocation();
-  let from = location.state?.from?.pathname || "/";
+  let from = location.state?.from?.pathname || "/home";
   useEffect(() => {
-    if (token) {
-      console.log(gUser || user);
-      navigate(from, { replace: true });
+    if (token && from === '/login') {
+        navigate('/');
     }
-  }, [token, from, navigate]);
+    else if (token) {
+        navigate(from, { replace: true });
+    }
+}, [token, from, navigate]);
   if (gLoading || loading) {
     return <Loading></Loading>;
   }
