@@ -4,25 +4,42 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [cardError, setCardError] = useState("");
-  const [clientSecret, setClientSecret] = useState("");
+  const [cardError, setCardError] = useState('');
+  const [clientSecret, setClientSecret] = useState('');
   const { totalMoney } = order;
-  useEffect(() => {
-    fetch("https://tranquil-wave-41515.herokuapp.com/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ totalMoney }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.clientSecret) {
-          setClientSecret(data.clientSecret);
-        }
-      });
-  }, [totalMoney]);
+useEffect(()=>{
+fetch('http://localhost:5000/create-payment-intent',{
+  method:'POST',
+  headers: {
+    'content-type':'application/json',
+    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+  },
+  body:JSON.stringify({totalMoney})
+})
+.then(res=>res.json())
+.then(data=>{
+if(data?.clientSecret){
+  setClientSecret(data.clientSecret);
+}
+});
+},[totalMoney])
+
+  // useEffect(() => {
+  //   fetch("https://tranquil-wave-41515.herokuapp.com/create-payment-intent", {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //       authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+  //     },
+  //     body: JSON.stringify({ totalMoney }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data?.clientSecret) {
+  //         setClientSecret(data.clientSecret);
+  //       }
+  //     });
+  // }, [totalMoney]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

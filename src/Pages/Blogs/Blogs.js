@@ -12,7 +12,6 @@ const Blogs = () => {
         <div className="card w-96 bg-primary text-primary-content">
           <div className="card-body">
             <h2 className="card-title">
-              {" "}
               How will you improve the performance of a React Application?
             </h2>
             <p>
@@ -33,11 +32,12 @@ const Blogs = () => {
               application?
             </h2>
             <p>
-              React uses an observable object as the state that observes what
-              changes are made to the state and helps the component behave
-              accordingly. For example, if we update the state of any component
-              like the following the webpage will not re-render itself because
-              React State will not be able to detect the changes made
+              whenever we change state React uses an observable object as the
+              state that observes what changes are made to the state and helps
+              the component behave accordingly. For example, if we update the
+              state of any component like the following the webpage will not
+              re-render itself because React State will not be able to detect
+              the changes made
             </p>
           </div>
         </div>
@@ -64,11 +64,14 @@ const Blogs = () => {
               not set products = [...] instead, you use the setProducts
             </h2>
             <p>
-              One of the benefits of unit tests is that they isolate a function,
-              class or method and only test that piece of code. Higher quality
-              individual components create overall system resiliency. Thus, the
-              result is reliable code. Unit tests also change the nature of the
-              debugging process
+              Here if we update the value of the hook like this: product =
+              [...], it will produce a error because are destructuing the hook
+              as const but if we use it as it is then it wont provide any error
+              and set the value as we want.But there is an problem,here to re
+              render the component we have to use setProducts otherwise it wont
+              re render.setProducts is done by the asynchronous task.then it
+              will add the new value and will replace the old value and then it
+              will re-render that component.
             </p>
           </div>
         </div>

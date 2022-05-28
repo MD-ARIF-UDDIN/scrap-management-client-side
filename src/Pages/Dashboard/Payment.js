@@ -7,12 +7,12 @@ import Loading from "../Shared/Loading";
 import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(
-  "pk_test_51L48NeCBwhI06WEf7saOIwZ3B4AKv28ABrPseH2Fhn3a8ybv9bFGqrEIjtI77spKq7m61kWxU2Ff3GfNotaQPKmN00yiMBikG6"
+  'pk_test_51L48NeCBwhI06WEf7saOIwZ3B4AKv28ABrPseH2Fhn3a8ybv9bFGqrEIjtI77spKq7m61kWxU2Ff3GfNotaQPKmN00yiMBikG6'
 );
 
 const Payment = () => {
   const { id } = useParams();
-  const url = `https://tranquil-wave-41515.herokuapp.com/${id}`;
+  const url = `https://tranquil-wave-41515.herokuapp.com/purchase/${id}`;
 
   const { data: order, isLoading } = useQuery(["purchase", id], () =>
     fetch(url).then((res) => res.json())
