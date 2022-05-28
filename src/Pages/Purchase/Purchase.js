@@ -11,15 +11,12 @@ const Purchase = () => {
   const [user, loading] = useAuthState(auth);
   const [btnDisable, setBtnDisable] = useState(false);
 
-
   const {
     data: tools,
     isLoading,
     refetch,
   } = useQuery(["tool", id], () =>
-    fetch(`https://tranquil-wave-41515.herokuapp.com/tool/${id}`).then((res) =>
-      res.json()
-    )
+    fetch(`http://localhost:5000/tool/${id}`).then((res) => res.json())
   );
   if (isLoading) {
     return <Loading></Loading>;
@@ -64,7 +61,7 @@ const Purchase = () => {
       minimum,
     };
 
-    fetch(`https://tranquil-wave-41515.herokuapp.com/tool/${id}`, {
+    fetch(`http://localhost:5000/tool/${id}`, {
       method: "PUT",
       body: JSON.stringify(newTools),
       headers: {
@@ -74,7 +71,7 @@ const Purchase = () => {
       .then((res) => res.json())
       .then((data) => console.log(data));
 
-    fetch("https://tranquil-wave-41515.herokuapp.com/purchase", {
+    fetch("http://localhost:5000/purchase", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -177,11 +174,10 @@ const Purchase = () => {
             value="order"
             className="btn w-full max-w-xs mt-6"
           />
-           {btnDisable && (
-          <p className="text-red-500 mt-2   ">Please enter valid quantity</p>
-        )}
+          {btnDisable && (
+            <p className="text-red-500 mt-2   ">Please enter valid quantity</p>
+          )}
         </form>
-       
       </div>
     </div>
   );

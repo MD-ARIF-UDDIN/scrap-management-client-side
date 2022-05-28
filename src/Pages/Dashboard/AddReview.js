@@ -13,7 +13,7 @@ const AddReview = () => {
       reviewText: event.target.reviewHere.value,
       stars: event.target.stars.value,
     };
-    fetch("https://tranquil-wave-41515.herokuapp.com/review", {
+    fetch("http://localhost:5000/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

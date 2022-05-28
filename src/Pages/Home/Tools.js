@@ -4,7 +4,7 @@ import Tool from "./Tool";
 const Tools = () => {
   const [tools, setTools] = useState([]);
   useEffect(() => {
-    fetch("https://tranquil-wave-41515.herokuapp.com/tool")
+    fetch("http://localhost:5000/tool")
       .then((res) => res.json())
       .then((data) => setTools(data));
   }, []);

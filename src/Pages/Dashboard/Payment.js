@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 
 const Payment = () => {
   const { id } = useParams();
-  const url = `https://tranquil-wave-41515.herokuapp.com/${id}`;
+  const url = `http://localhost:5000/${id}`;
 
   const { data: order, isLoading } = useQuery(["purchase", id], () =>
     fetch(url).then((res) => res.json())

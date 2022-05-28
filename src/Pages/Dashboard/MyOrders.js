@@ -12,7 +12,7 @@ const MyOrders = () => {
   useEffect(() => {
     const email = user?.email;
     fetch(
-      `https://tranquil-wave-41515.herokuapp.com/purchase?customer=${email}`,
+      `http://localhost:5000/purchase?customer=${email}`,
       {
         method: "GET",
         headers: {
@@ -29,6 +29,7 @@ const MyOrders = () => {
         return res.json();
       })
       .then((data) => {
+        console.log(data);
         setOrders(data);
       });
   }, [user]);
@@ -37,14 +38,14 @@ const MyOrders = () => {
     console.log(id);
     const confirm = window.confirm("Do you delete this item?");
     if (confirm) {
-      fetch(`https://tranquil-wave-41515.herokuapp.com/purchase/${id}`, {
+      fetch(`http://localhost:5000/purchase/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           const remainingOrder = orders.filter((order) => order._id !== id);
-          toast.success('order deleted successfully');
+          toast.success("order deleted successfully");
           setOrders(remainingOrder);
         });
     }
@@ -72,7 +73,7 @@ const MyOrders = () => {
                 <th>{index + 1}</th>
                 <td>{a.customerName}</td>
                 <td>{a.tools}</td>
-                
+
                 <td>{a.purchaseQuantity}</td>
                 <td>{a.totalMoney}</td>
 
