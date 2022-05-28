@@ -3,23 +3,66 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 
 const MyProfile = () => {
   const [user, loading, error] = useAuthState(auth);
 
-  const { _id, education, phone, location, linkedin } = user;
+  //const { _id, education, phone, location, linkedin } = user;
+
+  const {
+    data: displayUser,
+    isLoading,
+    refetch,
+  } = useQuery("user", () =>
+    fetch(
+      `https://tranquil-wave-41515.herokuapp.com/user?email=${user.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "content-type": "application/json",
+        },
+      }
+    ).then((res) => res.json())
+  );
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const handleUpdate = (event) => {
     event.preventDefault();
 
-    const updatedInfo = {
+    const updatedUser = {
       phone: event.target.phone.value,
       address: event.target.location.value,
       education: event.target.education.value,
       linkedin: event.target.linkedin.value,
     };
+
+    fetch(
+      `https://tranquil-wave-41515.herokuapp.com/updateduser?email=${user.email}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(updatedUser),
+      }
+    )
+      .then((res) => res.json())
+      .then((inserted) => {
+        if (inserted.acknowledged) {
+          toast.success("Updated Profile successfully");
+          event.target.reset();
+          refetch();
+        } else {
+          toast.error("Failed to update");
+        }
+      });
   };
 
   return (
@@ -53,6 +96,26 @@ const MyProfile = () => {
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {user.email}
+              </dd>
+            </div>
+
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Phone</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {displayUser.phone}
+              </dd>
+            </div>
+
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">education</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {displayUser.education}
+              </dd>
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">linkedin</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {displayUser.linkedin}
               </dd>
             </div>
           </dl>
@@ -127,8 +190,8 @@ const MyProfile = () => {
             </label>
             <input
               type="text"
-              name="linkedin<"
-              placeholder="your linkedin<"
+              name="linkedin"
+              placeholder="your linkedin"
               className="input input-bordered"
               required
             />
@@ -140,7 +203,6 @@ const MyProfile = () => {
             className="btn w-full max-w-xs mt-6"
           />
         </form>
-        
       </div>
     </div>
   );

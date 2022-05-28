@@ -28,7 +28,7 @@ const AddReview = () => {
   };
   return (
     <div>
-      <h1>add review</h1>
+      <h1 className="text-primary text-4xl font-bold">add review</h1>
       <form onSubmit={handleAddreview}>
         <div className="form-control">
           <label className="label">
@@ -81,7 +81,7 @@ const AddReview = () => {
 
         <input
           type="submit"
-          value="Submit"
+          value="Add"
           className="btn w-full max-w-xs mt-6"
         />
       </form>
