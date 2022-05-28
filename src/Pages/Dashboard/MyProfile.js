@@ -136,7 +136,7 @@ const MyProfile = () => {
 
           <input
             type="submit"
-            value="order"
+            value="update"
             className="btn w-full max-w-xs mt-6"
           />
         </form>

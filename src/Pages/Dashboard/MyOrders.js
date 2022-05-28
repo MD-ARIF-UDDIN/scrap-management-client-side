@@ -12,7 +12,7 @@ const MyOrders = () => {
   useEffect(() => {
     const email = user?.email;
     fetch(
-      `http://localhost:5000/purchase?customer=${email}`,
+      `https://tranquil-wave-41515.herokuapp.com/purchase?customer=${email}`,
       {
         method: "GET",
         headers: {
@@ -38,7 +38,7 @@ const MyOrders = () => {
     console.log(id);
     const confirm = window.confirm("Do you delete this item?");
     if (confirm) {
-      fetch(`http://localhost:5000/purchase/${id}`, {
+      fetch(`https://tranquil-wave-41515.herokuapp.com/purchase/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

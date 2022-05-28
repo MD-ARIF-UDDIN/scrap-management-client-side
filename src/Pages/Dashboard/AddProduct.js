@@ -31,7 +31,7 @@ const AddProduct = () => {
             minimum: data.minimum,
             image: image,
           };
-          fetch("http://localhost:5000/tool", {
+          fetch("https://tranquil-wave-41515.herokuapp.com/tool", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -183,9 +183,9 @@ const AddProduct = () => {
             type="number"
             className="input input-bordered w-full max-w-xs"
             min={1}
-            placeholder='enter minimumorder quantity'
+            placeholder="enter minimumorder quantity"
             {...register("minimum", {
-               required: {
+              required: {
                 value: true,
                 message: "minimum order quantity  is required",
               },

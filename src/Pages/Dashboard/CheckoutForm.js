@@ -8,13 +8,13 @@ const CheckoutForm = ({ order }) => {
   const [clientSecret, setClientSecret] = useState("");
   const { totalMoney } = order;
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://tranquil-wave-41515.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify({totalMoney}),
+      body: JSON.stringify({ totalMoney }),
     })
       .then((res) => res.json())
       .then((data) => {

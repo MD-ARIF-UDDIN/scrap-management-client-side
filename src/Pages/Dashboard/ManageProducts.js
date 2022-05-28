@@ -10,26 +10,28 @@ const ManageProducts = () => {
     isLoading,
     refetch,
   } = useQuery("tools", () =>
-    fetch("http://localhost:5000/tool").then((res) => res.json())
+    fetch("https://tranquil-wave-41515.herokuapp.com/tool").then((res) =>
+      res.json()
+    )
   );
   if (isLoading) {
     return <Loading></Loading>;
   }
-  const handleDelete = id => {
-    fetch(`http://localhost:5000/tool/${id}`, {
+  const handleDelete = (id) => {
+    fetch(`https://tranquil-wave-41515.herokuapp.com/tool/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-      .then(res => res.json())
-      .then(data => {
-          const remainingTools= tools.filter((tool) => tool._id !== id);
-          setTools(remainingTools);
-          toast.success('tool deleted successfully')
-          refetch();
-        }
-      )};
+      .then((res) => res.json())
+      .then((data) => {
+        const remainingTools = tools.filter((tool) => tool._id !== id);
+        setTools(remainingTools);
+        toast.success("tool deleted successfully");
+        refetch();
+      });
+  };
   return (
     <div>
       <h2 className="text-2xl font-bold text-primary">
@@ -49,29 +51,29 @@ const ManageProducts = () => {
           </thead>
           <tbody>
             {alltools.map((tool, index) => (
-               <tr key={tool._id}>
-               <td>{index + 1}</td>
-               <td>
-                 <div className="flex items-center space-x-3">
-                   <div className="avatar">
-                     <div className="mask mask-squircle w-12 h-12">
-                       <img src={tool.image} alt="tool" />
-                     </div>
-                   </div>
-                 </div>
-               </td>
-               <td>{tool.name}</td>
-               <td>{tool.quantity}</td>
-               <td>{tool.minimum}</td>
-               <td>
-                 <button
-                   onClick={() => handleDelete(tool._id)}
-                   className="btn btn-xs btn-error"
-                 >
-                   Delete
-                 </button>
-               </td>
-             </tr>
+              <tr key={tool._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img src={tool.image} alt="tool" />
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>{tool.name}</td>
+                <td>{tool.quantity}</td>
+                <td>{tool.minimum}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(tool._id)}
+                    className="btn btn-xs btn-error"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
