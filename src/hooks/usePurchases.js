@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const usePurchases = () => {
-    const [purchases, setPurchases] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:5000/purchase')
-            .then(res => res.json())
-            .then(data => setPurchases(data))
-    }, []);
-    return [purchases, setPurchases];
+  const [purchases, setPurchases] = useState([]);
+  useEffect(() => {
+    fetch("https://tranquil-wave-41515.herokuapp.com")
+      .then((res) => res.json())
+      .then((data) => setPurchases(data));
+  }, []);
+  return [purchases, setPurchases];
 };
 
 export default usePurchases;
