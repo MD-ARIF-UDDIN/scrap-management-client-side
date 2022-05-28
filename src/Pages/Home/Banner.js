@@ -4,7 +4,7 @@ const Banner = () => {
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <img src="https://i.ibb.co/741p9nv/R.png" />
+        <img className="w-2/4" src="https://i.ibb.co/WBpL69y/manufacture.jpg" />
         <div>
           <h1 className="text-5xl font-bold">
             <span className="text-primary">Scrap</span> tools ltd

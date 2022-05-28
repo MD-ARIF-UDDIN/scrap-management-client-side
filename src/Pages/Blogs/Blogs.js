@@ -6,7 +6,7 @@ const Blogs = () => {
       <div className="card w-96 bg-primary text-primary-content">
         <div className="card-body">
           <h2 className="card-title"> How will you improve the performance of a React Application?</h2>
-          <p> "1 Spreading props on DOM elements 2.  Use React.Fragments to Avoid Additional HTML Element Wrappers 3. Conditional rendering of components 4. Removing unnecessary await and use Promise.all() 5. Function/Stateless Components and React.PureComponent "</p>
+          <p>I can improve the performance of a react app by implementing throttling and debouncing with lodash, underscore or RxJs When building an app using React.I can also  Use React.Fragments to Avoid Additional HTML Element Wrappers. By using react hooks we can also improve the performance of a react app.I can aslo improve the performance of react app Keeping component state local where necessary.</p>
          
         </div>
       </div>
@@ -20,7 +20,7 @@ const Blogs = () => {
       <div className="card w-96 bg-primary text-primary-content">
         <div className="card-body">
           <h2 className="card-title">How does prototypical inheritance work?</h2>
-          <p>Prototype-based programming is a style of object-oriented programming in which behaviour reuse (known as inheritance) is performed via a process of reusing existing objects that serve as prototypes. This model can also be known as prototypal, prototype-oriented, classless, or instance-based programming.</p>
+          <p>Behavior and state are inherited from the parent object Prototypal inheritance.When the object is called it inherits the behavior and state. If teh parent object changes in the run time then the behavior and the state of the child objects will be affected by it.An object uses the properties or methods of another object via the prototype linkage in prototypical inheritance</p>
           
         </div>
       </div>
@@ -44,44 +44,3 @@ const Blogs = () => {
 
 export default Blogs;
 
-// [
-//   {
-//     _id: 1,
-//     question: " How will you improve the performance of a React Application?",
-//     answer:
-//       "1 Spreading props on DOM elements 2.  Use React.Fragments to Avoid Additional HTML Element Wrappers 3. Conditional rendering of components 4. Removing unnecessary await and use Promise.all() 5. Function/Stateless Components and React.PureComponent ",
-//   },
-//   {
-//     _id: 2,
-//     question:
-//       "What are the different ways to manage a state in a React application?",
-//     answer:
-//       "React uses an observable object as the state that observes what changes are made to the state and helps the component behave accordingly. For example, if we update the state of any component like the following the webpage will not re-render itself because React State will not be able to detect the changes made",
-//   },
-//   {
-//     _id: 3,
-//     question: "How does prototypical inheritance work?",
-//     answer:
-//       "Prototype-based programming is a style of object-oriented programming in which behaviour reuse (known as inheritance) is performed via a process of reusing existing objects that serve as prototypes. This model can also be known as prototypal, prototype-oriented, classless, or instance-based programming.",
-//   },
-//   {
-//     _id: 4,
-//     question:
-//       "Why you do not set the state directly in React. For example, if you have const [products, setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts",
-//     answer:
-//       "A good product description should focus on the product's features and benefits. Obviously, the features are a bit more clear cut. The benefits will require a bit more creativity and understanding of your target audience. However, both features and benefits allow for creative writing ",
-//   },
-//   {
-//     _id: 5,
-//     question:
-//       " You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?",
-//     answer:
-//       "A product description is the marketing copy that explains what a product is and why it's worth purchasing. The purpose of a product description is to supply customers with important information about the features and benefits of the product so they're compelled to buy",
-//   },
-//   {
-//     _id: 6,
-//     question: " What is a unit test? Why should write unit tests?",
-//     answer:
-//       "One of the benefits of unit tests is that they isolate a function, class or method and only test that piece of code. Higher quality individual components create overall system resiliency. Thus, the result is reliable code. Unit tests also change the nature of the debugging process] ",
-//   },
-// ];

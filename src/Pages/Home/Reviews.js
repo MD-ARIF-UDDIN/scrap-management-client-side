@@ -14,7 +14,7 @@ const Reviews = () => {
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5">
         {reviews.map((reviews) => (
           <Review key={reviews._id} reviews={reviews}></Review>
-        ))}
+        )).reverse()}
       </div>
     </div>
   );
