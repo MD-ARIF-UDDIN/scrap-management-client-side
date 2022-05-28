@@ -46,6 +46,7 @@ const AddProduct = () => {
                 reset();
               } else {
                 toast.error("there is been a problem adding new tool");
+                
               }
             });
         }

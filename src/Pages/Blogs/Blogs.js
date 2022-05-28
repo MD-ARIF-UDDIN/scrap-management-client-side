@@ -32,12 +32,21 @@ const Blogs = () => {
               application?
             </h2>
             <p>
-              whenever we change state React uses an observable object as the
-              state that observes what changes are made to the state and helps
-              the component behave accordingly. For example, if we update the
-              state of any component like the following the webpage will not
-              re-render itself because React State will not be able to detect
-              the changes made
+              there are four main types of state to manage a state in a react
+              Application.These are: Local state,Global state,Server state,URL
+              state.If we manage data in one or more component then it is local
+              state. Local state is most often managed in React using the
+              useState hook. Global state is data we manage across multiple
+              components.Global state is necessary when we want to get and
+              update data anywhere in our app, or in multiple components at
+              least.A common example of global state is authenticated user
+              state. If a user is logged into app, it is necessary to get and
+              change their data throughout our application.Though Server state
+              is a simple concept but it can be hard to manage alongside all of
+              our local and global UI state.URL state is often missing as a
+              category of state, but it is an important one. In many cases, a
+              lot of major parts of our application rely upon accessing URL
+              state.
             </p>
           </div>
         </div>
