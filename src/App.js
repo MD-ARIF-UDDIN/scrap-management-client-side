@@ -26,7 +26,7 @@ import ManageOrders from "./Pages/Dashboard/ManageOrders";
 
 function App() {
   return (
-    <div>
+    <div className="" style={{"font-family": "'Poppins',sans-serif"}} >
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />

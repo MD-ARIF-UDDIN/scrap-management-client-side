@@ -33,7 +33,7 @@ const Users = () => {
           <tbody>
             {users.map((user) => (
               <UserRow key={user._id} user={user} refetch={refetch}></UserRow>
-            ))}
+            )).reverse()}
           </tbody>
         </table>
       </div>

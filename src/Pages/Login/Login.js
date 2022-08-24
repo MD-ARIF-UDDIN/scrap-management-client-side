@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import './Login.css';
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -58,10 +59,10 @@ const Login = () => {
   //   }
   // };
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center login-page">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="text-center text-4xl font-bold">Login</h2>
+          <h2 className="text-center text-4xl font-bold text-primary">Login</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">
@@ -138,7 +139,7 @@ const Login = () => {
             />
           </form>
           <p>
-            New to scrap tools?{" "}
+            New to Bazaar E-Commerce?{" "}
             <Link className="text-primary" to="/signup">
               please register
             </Link>

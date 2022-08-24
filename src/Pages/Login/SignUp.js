@@ -10,6 +10,7 @@ import Loading from "../Shared/Loading";
 import { Link,  useLocation,  useNavigate } from "react-router-dom";
 import useToken from "../../hooks/useToken";
 import { sendEmailVerification } from "firebase/auth";
+import './SignUp.css'
 
 const SignUp = () => {
   const navigate=useNavigate();
@@ -65,7 +66,7 @@ useEffect(() => {
     console.log("updated name");
   };
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div  className="h-screen flex justify-center items-center signup-page">
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h2 className="text-center text-4xl font-bold">Sign Up</h2>

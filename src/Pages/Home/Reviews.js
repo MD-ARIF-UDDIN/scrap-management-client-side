@@ -13,7 +13,8 @@ const Reviews = () => {
       <h2 className="text-4xl font-bold text-center text-primary">
         Customer reviews
       </h2>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5">
+      <p className="text-center">Some of the latest reviews given by our customer are here</p>
+      <div className="mt-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-5">
         {reviews
           .map((reviews) => (
             <Review key={reviews._id} reviews={reviews}></Review>

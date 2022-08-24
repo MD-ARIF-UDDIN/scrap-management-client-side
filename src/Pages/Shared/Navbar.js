@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 
+
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
   const logout = () => {
@@ -12,26 +13,23 @@ const Navbar = () => {
   };
   const menuItems = (
     <>
-      <li>
-        <Link to="/">Home</Link>
+      <li className="hover:bg-primary active:bg-primary">
+        <Link  to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/products">Tools</Link>
+      <li className="hover:bg-primary active:bg-primary">
+        <Link  to="/products">Products</Link>
       </li>
-      {user && (
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
+      
+        <li className="hover:bg-primary active:bg-primary">
+          <Link  to="/dashboard">Dashboard</Link>
         </li>
-      )}
-      <li>
-        <Link to="/blogs">Blogs</Link>
+     
+      <li className="hover:bg-primary active:bg-primary">
+        <Link  to="/myportfolio">About Us</Link>
       </li>
-      <li>
-        <Link to="/myportfolio">My Portfolio</Link>
-      </li>
-      <li>
+      <li className="hover:bg-primary active:bg-primary">
         {user ? (
-          <button className="btn btn-ghost" onClick={logout}>
+          <button className="btn btn-ghost font-bold text-primary" onClick={logout}>
             Sign Out
           </button>
         ) : (
@@ -41,7 +39,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div style={{"font-family": "'Poppins',sans-serif"}} className="navbar bg-base-100 font-link font-semibold">
     <div className="navbar-start">
         <div className="dropdown">
             <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -51,7 +49,7 @@ const Navbar = () => {
                 {menuItems}
             </ul>
         </div>
-        <a className="btn btn-ghost normal-case font-bold text-xl"> <span className="text-primary">Scrap </span> Tools Ltd</a>
+        <a href="/" className="btn btn-ghost normal-case font-bold text-xl"> <span className="text-primary">Scrap &nbsp;</span>  Tools Ltd</a>
     </div>
     <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">

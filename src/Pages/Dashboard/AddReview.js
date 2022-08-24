@@ -83,7 +83,7 @@ const AddReview = () => {
         <input
           type="submit"
           value="Add"
-          className="btn w-full max-w-xs mt-6"
+          className="btn bg-primary text-white w-full max-w-xs mt-6"
         />
       </form>
     </div>

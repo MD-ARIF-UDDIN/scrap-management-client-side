@@ -11,7 +11,7 @@ const ManageOrders = () => {
         <table className="table table-zebra w-full">
           <thead>
             <tr>
-              <th className="text-primary-focus text-base">Tool Name</th>
+              <th className="text-primary-focus text-base">Product Name</th>
               <th className="text-primary-focus text-base">Customer Name</th>
               <th className="text-primary-focus text-base">Customer Email</th>
               <th className="text-primary-focus text-base">Order Quantity</th>

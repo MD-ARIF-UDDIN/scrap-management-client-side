@@ -28,7 +28,6 @@ const AddProduct = () => {
             quantity: data.quantity,
             price: data.price,
             description: data.description,
-            minimum: data.minimum,
             image: image,
           };
           fetch("https://tranquil-wave-41515.herokuapp.com/tool", {
@@ -42,7 +41,7 @@ const AddProduct = () => {
             .then((res) => res.json())
             .then((inserted) => {
               if (inserted.insertedId) {
-                toast.success("new tool added");
+                toast.success("new product added");
                 reset();
               } else {
                 toast.error("there is been a problem adding new tool");
@@ -111,7 +110,7 @@ const AddProduct = () => {
           </label>
           <input
             type="price"
-            placeholder="your price"
+            placeholder=" price"
             className="input input-bordered w-full max-w-xs"
             min={1}
             {...register("price", {
@@ -176,32 +175,8 @@ const AddProduct = () => {
             )}
           </label>
         </div>
-        <div className="form-control w-full max-w-xs">
-          <label className="label">
-            <span className="label-text">Minimum order quantity</span>
-          </label>
-          <input
-            type="number"
-            className="input input-bordered w-full max-w-xs"
-            min={1}
-            placeholder="enter minimumorder quantity"
-            {...register("minimum", {
-              required: {
-                value: true,
-                message: "minimum order quantity  is required",
-              },
-            })}
-          />
-          <label className="label">
-            {errors.minimum?.type === "required" && (
-              <span className="label-text-alt text-red-600">
-                {errors.minimum.message}
-              </span>
-            )}
-          </label>
-        </div>
-
-        <input className="btn w-full max-w-xs" value="ADD" type="submit" />
+        
+        <input className="btn bg-primary text-white w-full max-w-xs" value="ADD" type="submit" />
       </form>
     </div>
   );

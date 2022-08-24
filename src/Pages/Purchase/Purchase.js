@@ -27,7 +27,7 @@ const Purchase = () => {
   const handleInput = (e) => {
     let orderQuantity = parseInt(e.target.value);
     let toolsQuantity = parseInt(quantity);
-    if (orderQuantity > toolsQuantity || orderQuantity < minimum) {
+    if (orderQuantity > toolsQuantity) {
       setBtnDisable(true);
     } else {
       setBtnDisable(false);
@@ -164,7 +164,7 @@ const Purchase = () => {
               type="number"
               name="minquantity"
               placeholder="Enter how many to purchase"
-              min={minimum}
+              min={0}
               required
               className="input searchField input-bordered input-primary "
             />
@@ -177,7 +177,7 @@ const Purchase = () => {
             className="btn w-full max-w-xs mt-6"
           />
           {btnDisable && (
-            <p className="text-red-500 mt-2   ">Please enter valid quantity</p>
+            <p className="text-red-500 mt-2">Please enter valid quantity</p>
           )}
         </form>
       </div>

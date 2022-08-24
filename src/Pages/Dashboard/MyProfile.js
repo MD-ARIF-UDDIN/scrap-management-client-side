@@ -69,13 +69,13 @@ const MyProfile = () => {
     <div className="mb-6 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-4 gap-5">
       <div className="bg-white w-3/4 shadow overflow-hidden sm:rounded-lg">
         <div className="px-4 py-5 sm:px-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+          <h3 className="text-lg leading-6 font-bold text-black">
             Your Profile Info
           </h3>
         </div>
         {user.photoURL && (
-          <div className="avatar px-2">
-            <div className=" w-full lg:w-72 rounded-full ring ring-primary ring-offset-base-200 ring-offset-2">
+          <div className="avatar px-2 flex items-center justify-center">
+            <div className=" w-full  lg:w-72 rounded-full ring ring-primary ring-offset-base-200 ring-offset-2">
               <img src={user.photoURL} alt="" />
             </div>
           </div>
@@ -84,37 +84,44 @@ const MyProfile = () => {
         <div className="border-t border-gray-200">
           <dl>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Full name</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dt className="text-sm font-medium text-black">Full name</dt>
+              <dd className="mt-1 text-sm text-black sm:mt-0 sm:col-span-2">
                 {user.displayName}
               </dd>
             </div>
 
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
+              <dt className="text-sm font-medium text-black">
                 email address
               </dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd className="mt-1 text-sm text-black sm:mt-0 sm:col-span-2">
                 {user.email}
               </dd>
             </div>
 
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Phone</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dt className="text-sm font-medium text-black">Phone</dt>
+              <dd className="mt-1 text-sm text-black sm:mt-0 sm:col-span-2">
                 {displayUser.phone}
               </dd>
             </div>
 
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">education</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dt className="text-sm font-medium text-black">Location</dt>
+              <dd className="mt-1 text-sm text-black sm:mt-0 sm:col-span-2">
+                {displayUser.location}
+              </dd>
+            </div>
+
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-black">education</dt>
+              <dd className="mt-1 text-sm text-black sm:mt-0 sm:col-span-2">
                 {displayUser.education}
               </dd>
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">linkedin</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dt className="text-sm font-medium text-black">linkedin</dt>
+              <dd className="mt-1 text-sm text-black sm:mt-0 sm:col-span-2">
                 {displayUser.linkedin}
               </dd>
             </div>
@@ -200,7 +207,7 @@ const MyProfile = () => {
           <input
             type="submit"
             value="update"
-            className="btn w-full max-w-xs mt-6"
+            className="btn bg-primary text-white w-full max-w-xs mt-6"
           />
         </form>
       </div>

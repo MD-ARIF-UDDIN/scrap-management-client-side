@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Tool from "./Tool";
+import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 const Tools = () => {
   const [tools, setTools] = useState([]);
+  const navigate = useNavigate();
+  const handleProducts = (id) => {
+    navigate(`/products`);
+  };
   useEffect(() => {
     fetch("https://tranquil-wave-41515.herokuapp.com/tool")
       .then((res) => res.json())
@@ -10,12 +17,18 @@ const Tools = () => {
   }, []);
   return (
     <div className="my-28">
-      <h2 className="text-4xl font-bold text-center">Our Tools</h2>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5">
+      <h2 className="text-4xl font-bold text-center text-primary">Our Tools</h2>
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-5">
         {tools
           .map((tools) => <Tool key={tools._id} tools={tools}></Tool>)
           .reverse()
-          .slice(0, 6)}
+          .slice(0, 8)}
+      </div>
+      <div className="see-more-button flex justify-end mt-4  mx-8">
+        <button onClick={() => handleProducts()} className="text-primary see-more">
+          See More
+          <FaArrowRight />
+        </button>
       </div>
     </div>
   );
