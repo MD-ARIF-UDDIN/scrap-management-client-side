@@ -21,7 +21,7 @@ const Tools = () => {
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-5">
         {tools
           .map((tools) => <Tool key={tools._id} tools={tools}></Tool>)
-          .reverse()
+         
           .slice(0, 8)}
       </div>
       <div className="see-more-button flex justify-end mt-4  mx-8">

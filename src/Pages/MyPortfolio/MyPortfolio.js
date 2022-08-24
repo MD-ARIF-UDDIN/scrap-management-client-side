@@ -1,29 +1,135 @@
 import React from "react";
-
+import as from "../../Images/as.png";
+import { BsFacebook, BsLinkedin,BsTwitter} from 'react-icons/bs';
 
 const MyPortfolio = () => {
-  
   return (
-    <div className="flex justify-center mb-2">
-      <div className="card  w-3/4  bg-base-100 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title text-primary text-4xl font-bold">Md Arif Uddin</h2>
-          <h1>Email:mdarifuddin040@gmail.com</h1>
-          <h1 className="text-xl font-bold text-primary">Edcational Background:</h1>
-          <h1>Running:BSc in CSE,PORT CITY INTERNATIONAL UNIVERSITY</h1>
-          <h1>HSC:CHATTAGRAM BIGGAN COLLEGE,2018</h1>
-          <h1>SSC:BANSKHALI BANGABANDHU HIGH SCHOOL,2016</h1>
-          <h1 className="mt-6 text-3xl text-primary font-bold">Skills:</h1>
-          <h2>HTML</h2>
-          <h2>JAVA</h2>
-          <h2>JAVASCRIPT</h2>
-          <h2>REACT</h2>
-          <h2>NODE JS</h2>
-          <h1 className="mt-6 text-3xl text-primary font-bold">Some of my project(live site link):</h1>
-          <a href="https://fruits-stock-982ee.web.app">1.https://fruits-stock-982ee.web.app</a>
-          <a href="https://lens-king-96d37.web.app">2.https://lens-king-96d37.web.app/</a>
-          <a href="https://choose-bullet-123.netlify.app">3.https://choose-bullet-123.netlify.app</a>
+    <div className="flex justify-center items-center">
+      <div className="min-h-screen rounded-lg  bg-white p-10">
+        <img
+          src={as}
+          alt=""
+          className="rounded-full p-4 h-40 mx-auto"
+        />
+
+        <header className=" text-2xl text-primary font-extrabold py-4 px-4 text-center">
+          Scrap Tools Ltd
+        </header>
+        <div className="text-black text-center">
+           <h1>Scrap tools ltd is a tools manufacturer company. We are providing servuce since 2000. Order all the available products from ourb website.</h1>
         </div>
+     
+        <div className="container flex justify-center mx-auto pt-16">
+                    <div>
+                        <p className=" font-bold text-3xl text-gray-800  text-center  pb-3">Our Team</p>
+                        <h1 className="xl:text-4xl text-3xl text-center text-primary font-extrabold pb-6 sm:w-4/6 w-5/6 mx-auto">Meet the talented people behind our success...</h1>
+                    </div>
+                </div>
+                <div className="w-full bg-gray-100  px-10 pt-10">
+                    <div className="container mx-auto">
+                        <div role="list" aria-label="Behind the scenes People " className="lg:flex md:flex sm:flex items-center xl:justify-between flex-wrap md:justify-around sm:justify-around lg:justify-around">
+                            <div role="listitem" className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                                <div className="rounded overflow-hidden shadow-md bg-white ">
+                                    <div className="absolute -mt-20 w-full flex justify-center">
+                                        <div className="h-32 w-32">
+                                            <img alt="" src="https://imgs.search.brave.com/rqehTwS8Wz_Q82lhJFUHfevH9fLKiAm_zKwh64_qob0/rs:fit:632:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5V/dU1KYW5lUkxfVkQ4/VXcwbzRjREt3SGFG/aiZwaWQ9QXBp"  role="img" className="rounded-full object-cover h-full w-full shadow-md" />
+                                        </div>
+                                    </div>
+                                    <div className="px-6 mt-16">
+                                        <h1 className="font-bold  text-3xl text-center mb-1">Pirlo Jackson</h1>
+                                       
+                                        <div className="w-full flex justify-center text-primary pt-5 pb-5">
+                                            <a href="a" className="mx-5">
+                                                <BsFacebook></BsFacebook>
+                                            </a>
+                                            <a href="a" className="mx-5">
+                                                <BsLinkedin></BsLinkedin>
+                                            </a>
+                                            <a href="a" className="mx-5">
+                                                <BsTwitter></BsTwitter>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="listitem" className="xl:w-1/3 lg:mx-3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                                <div className="rounded overflow-hidden shadow-md bg-white ">
+                                    <div className="absolute -mt-20 w-full flex justify-center">
+                                        <div className="h-32 w-32">
+                                            <img src="https://imgs.search.brave.com/PxsnrmYcNSL6qovUqnMqfPxx3ueLVTjIcwxvHAk3WyQ/rs:fit:371:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC51/WEE1d1NIMWFJVF9l/M0Jsd3RqMUVnSGFK/YyZwaWQ9QXBp" alt="Displayo" className="rounded-full object-cover h-full w-full shadow-md" />
+                                        </div>
+                                    </div>
+                                    <div className="px-6 mt-16">
+                                        <h1 className="font-bold  text-3xl text-center mb-1">Mark Owen</h1>
+                                       
+                                        <div className="w-full flex justify-center text-primary pt-5 pb-5">
+                                            <a href="a" className="mx-5">
+                                                <BsFacebook></BsFacebook>
+                                            </a>
+                                            <a href="a" className="mx-5">
+                                                <BsLinkedin></BsLinkedin>
+                                            </a>
+                                            <a href="a" className="mx-5">
+                                                <BsTwitter></BsTwitter>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="listitem" className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                                <div className="rounded overflow-hidden shadow-md bg-white ">
+                                    <div className="absolute -mt-20 w-full flex justify-center">
+                                        <div className="h-32 w-32">
+                                            <img src="https://imgs.search.brave.com/K09g-lnTBkmw1vW1uEEsOsg0gtSHVmvbd_-3JFfxo9U/rs:fit:448:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5D/cno1QUxrR2pZT1h5/eTgwNXBNN1dBSGFI/MSZwaWQ9QXBp" alt="Displa"  className="rounded-full object-cover h-full w-full shadow-md" />
+                                        </div>
+                                    </div>
+                                    <div className="px-6 mt-16">
+                                        <h1 className="font-bold  text-3xl text-center mb-1">Mitchell Johnson</h1>
+                                       
+                                        <div className="w-full flex justify-center text-primary pt-5 pb-5">
+                                            <a href="a" className="mx-5">
+                                                <BsFacebook></BsFacebook>
+                                            </a>
+                                            <a href="a" className="mx-5">
+                                                <BsLinkedin></BsLinkedin>
+                                            </a>
+                                            <a href="a" className="mx-5">
+                                                <BsTwitter></BsTwitter>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="listitem" className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
+                                <div className="rounded overflow-hidden shadow-md bg-white ">
+                                    <div className="absolute -mt-20 w-full flex justify-center">
+                                        <div className="h-32 w-32">
+                                            <img src="https://imgs.search.brave.com/-uzmlq7Zkt7DEUFyslXIyUxqwkaEZwFw7HWYRd_RJD8/rs:fit:416:225:1/g:ce/aHR0cHM6Ly90c2Uy/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5L/aF9FSWRmR1RpZ0dY/b0JiOWxCLWFnQUFB/QSZwaWQ9QXBp" alt="Displa"  className="rounded-full object-cover h-full w-full shadow-md" />
+                                        </div>
+                                    </div>
+                                    <div className="px-6 mt-16">
+                                        <h1 className="font-bold  text-3xl text-center mb-1">Liam stone</h1>
+                                       
+                                        <div className="w-full flex justify-center text-primary pt-5 pb-5">
+                                            <a href="a" className="mx-5">
+                                                <BsFacebook></BsFacebook>
+                                            </a>
+                                            <a href="a" className="mx-5">
+                                                <BsLinkedin></BsLinkedin>
+                                            </a>
+                                            <a href="a" className="mx-5">
+                                                <BsTwitter></BsTwitter>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            
+      
       </div>
     </div>
   );

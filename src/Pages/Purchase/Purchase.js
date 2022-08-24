@@ -88,8 +88,8 @@ const Purchase = () => {
       });
   };
   return (
-    <div className="mb-6">
-      <div className="hero min-h-screen bg-base-200">
+    <div className="mb-6 flex  items-center justify-center">
+      <div className="hero min-h-screen w-1/2 bg-base-200 p-4">
         <div className="hero-content flex-col lg:flex-row">
           <img
             src={image}
@@ -105,9 +105,9 @@ const Purchase = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center ">
+      <div className="flex justify-center w-1/2">
         <form onSubmit={handlePurchase}>
-          <div className="form-control">
+          <div className="form-control ">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
@@ -174,7 +174,7 @@ const Purchase = () => {
             disabled={btnDisable}
             type="submit"
             value="order"
-            className="btn w-full max-w-xs mt-6"
+            className="btn w-full max-w-xs mt-6 bg-primary"
           />
           {btnDisable && (
             <p className="text-red-500 mt-2">Please enter valid quantity</p>

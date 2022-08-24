@@ -7,6 +7,7 @@ import DiscountSec from './DiscounSec/DiscountSec';
 import Reviews from './Reviews';
 import Stats from './Stats';
 import Tools from './Tools';
+import TopProduct from './TopProduct';
 
 const Home = () => {
     return (
@@ -14,9 +15,11 @@ const Home = () => {
             <Banner></Banner>
             <Tools></Tools>
             <Stats></Stats>
+            
             <Company></Company>
             <Reviews></Reviews>
             <DiscountSec></DiscountSec>
+            <TopProduct></TopProduct>
             <Contact></Contact>
             
         </div>
